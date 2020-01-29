@@ -19,19 +19,23 @@ class Round
   end
 
   def number_correct
-    correct_counter()
+    number_correct_by_category()
   end
 
-  def number_correct_by_category(category)
-    turns.find_all do |turn|
-      correct_counter() if category == turn.card.category
-    end
-    #correct_counter()
-  end
-
-  def correct_counter
+  def number_correct_by_category(category = "ALL")
     turns.count do |turn|
-      turn.guess == turn.card.answer
+      turn.guess == turn.card.answer if category == turn.card.category || category == "ALL"
     end
+  end
+
+  def percent_correct
+    percent_correct_by_category()
+  end
+
+  def percent_correct_by_category(category = "ALL")
+    turn = turns.count do |turn|
+      category == turn.card.category || category == "ALL"
+    end
+    (number_correct_by_category(category) / turn.to_f) * 100
   end
 end
