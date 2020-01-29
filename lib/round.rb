@@ -36,6 +36,6 @@ class Round
     turn = turns.count do |turn|
       category == turn.card.category || category == "ALL"
     end
-    (number_correct_by_category(category) / turn.to_f) * 100
+    ((number_correct_by_category(category) / turn.to_f) * 100).round(1)
   end
 end
