@@ -17,4 +17,6 @@ round = Round.new(deck)
 
 print.intro(cards)
 cards.length.times {print.making_turn(cards, round)}
+print.results(round, cards)
+print.category_results(round, cards)
 
