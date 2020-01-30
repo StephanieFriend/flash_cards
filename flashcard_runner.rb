@@ -12,6 +12,8 @@ card_5 = Card.new("How many books are in the 'Harry Potter' series?", "7", :Hobb
 card_6 = Card.new("What is the top selling single toy?", "rubik's cube", :Hobby)
 
 cards = [card_1, card_2, card_3, card_4, card_5, card_6]
+# filename = "cards.txt"
+# cards = CardGenerator.new(filename).cards
 deck = Deck.new(cards)
 round = Round.new(deck)
 
