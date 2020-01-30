@@ -1,3 +1,7 @@
+require './lib/turn'
+
+ALL_CATEGORIES = "ALL"
+
 class Round
 
   attr_reader :deck,
@@ -14,17 +18,18 @@ class Round
 
   def take_turn(guess)
     turn = Turn.new(guess, current_card())
+    turns << turn
     deck.cards.rotate!(1)
-    turns.empty? ? turns[0] = turn : turns << turn
+    turn
   end
 
   def number_correct
     number_correct_by_category()
   end
 
-  def number_correct_by_category(category = "ALL")
+  def number_correct_by_category(category = ALL_CATEGORIES)
     turns.count do |turn|
-      turn.guess == turn.card.answer if category == turn.card.category || category == "ALL"
+      turn.guess == turn.card.answer if category == turn.card.category || category == ALL_CATEGORIES
     end
   end
 
@@ -32,9 +37,9 @@ class Round
     percent_correct_by_category()
   end
 
-  def percent_correct_by_category(category = "ALL")
+  def percent_correct_by_category(category = ALL_CATEGORIES)
     turn = turns.count do |turn|
-      category == turn.card.category || category == "ALL"
+      category == turn.card.category || category == ALL_CATEGORIES
     end
     ((number_correct_by_category(category) / turn.to_f) * 100).round(1)
   end
