@@ -8,9 +8,10 @@ class CardGenerator
   def cards
     new_cards = []
     File.foreach(@file_name) do |line|
-      question =  line.partition(',').first
-      answer = line.partition(',').last.partition(',').first
-      category = line.partition(',').last.partition(',').last.delete("\n")
+      line_split = line.split(',')
+      question =  line_split.first
+      answer = line_split[1]
+      category = line_split.last.delete("\n")
       new_cards << Card.new(question, answer, category)
     end
     new_cards
