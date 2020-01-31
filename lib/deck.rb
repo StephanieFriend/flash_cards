@@ -12,7 +12,7 @@ class Deck
 
   def cards_in_category(category)
     cards.find_all do |card|
-      card if card.category == category
+      card.category == category
     end
   end
 end
