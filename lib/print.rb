@@ -43,7 +43,7 @@ class Print
       card.category
     end
     sorted_category.keys.each do |key|
-      puts "#{key} - #{round.percent_correct_by_category(key)}% correct"
+      puts "#{key} - #{round.percent_correct_by_category(key).to_i}% correct"
     end
   end
 end
